@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+       
+    <preference for="Codilar\VendorTable\Api\Data\VendorInterface" type="Codilar\VendorTable\Model\Vendor" />
+    <preference for="Codilar\VendorTable\Api\VendorRepositoryInterface" type="Codilar\VendorTable\Model\VendorRepository" />
+    <preference for="Codilar\VendorTable\Api\CustomAttributeInterface" type="Codilar\VendorTable\Model\CustomAttribute"/>
+
+
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+            	<!-- Data Source will be mentioned in listing xml -->
+                <item name="vendortable_listing_data_source" xsi:type="string">Codilar\VendorTable\Model\ResourceModel\Vendor\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Codilar\VendorTable\Model\ResourceModel\Vendor\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+        	<!-- Table name to insert data and listing data -->
+            <argument name="mainTable" xsi:type="string">vendor_tb</argument>
+            <!-- Resource model name -->
+            <argument name="resourceModel" xsi:type="string">Codilar\VendorTable\Model\ResourceModel\Vendor</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="custom_message" type="Codilar\VendorTable\Plugin\Cart" sortOrder="2"/>
+         <plugin name="aroundcart" type="Codilar\VendorTable\Plugin\Cart"  sortOrder="1" />
+    </type>
+
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="custom_message" type="Codilar\VendorTable\Plugin\Product" />
+    </type>
+
+</config>

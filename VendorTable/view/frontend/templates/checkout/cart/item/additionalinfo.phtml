@@ -1,0 +1,11 @@
+<?php
+    $additionalData = $block->getAdditionalData();
+     
+    foreach ($additionalData as $data) {
+        if (!is_null($data['custom_attribute_value'])) {
+        echo " {$data['attrLabel']}: {$data['custom_attribute_value']}\n";
+    }
+    }
+    
+?>
+

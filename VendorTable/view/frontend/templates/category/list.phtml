@@ -1,0 +1,18 @@
+<?php
+$product = $block->getProduct();
+
+if ($product !== null) {
+    $attrData = $product->getData('Vendor_Name');
+    $attrLabel = $product->getResource()->getAttribute('Vendor_Name')->getStoreLabel();
+    if($attrData !== null){
+
+
+?>
+
+<h4><?php echo  $attrLabel." :" .$attrData; ?></h4>
+
+<?php
+}
+}
+?>
+

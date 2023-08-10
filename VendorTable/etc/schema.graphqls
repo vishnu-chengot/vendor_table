@@ -1,0 +1,11 @@
+type Query {
+  getProductDetails(sku: String): ProductDetails @resolver(class: "Codilar\\VendorTable\\Model\\Resolver\\ProductDetails")
+}
+
+type ProductDetails {
+  id: Int @doc(description: "The unique ID for a Product object.")
+  sku: String @doc(description: "The unique sku for a Product object.")
+  name: String @doc(description: "The name of the Product")
+  price: Float @doc(description: "The price of the product.")
+  custom_attribute: String @doc(description: "A custom attribute of the product.")
+}
